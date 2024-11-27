@@ -71,6 +71,16 @@ namespace ContactsManager.UI.StartupExtensions
                 // Application
                 // to avoid Account Controller from this polycy add attribute [AllowAnonymus]
                 // in action COntroller
+                options.AddPolicy("NotAuth",polycy => {
+                    polycy.RequireAssertion(context => {
+                        return context.User.Identity==null? true:!context.User.Identity.IsAuthenticated;
+                        });
+                    // this will create custom polycy
+                    // and will return false if user is logged in
+                    // so [NotAuth] where ever we use this attribute
+                    // that action, controller cant be accessed if logged in
+                    // we can use it on login,register so after login they cant acces these pages.
+                });
             });
 
             services.ConfigureApplicationCookie(options => {

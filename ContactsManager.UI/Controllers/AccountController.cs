@@ -10,7 +10,7 @@ using Microsoft.Win32;
 namespace ContactsManager.UI.Controllers
 {
     [Route("[controller]/[action]")]
-    [AllowAnonymous]
+    
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -26,12 +26,14 @@ namespace ContactsManager.UI.Controllers
             _logoutService = logoutService;
         }
 
+        [Authorize("NotAuth")]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize("NotAuth")]
         public async Task<IActionResult> Register(RegisterDTO register)
         {
             if (!ModelState.IsValid)
@@ -58,12 +60,12 @@ namespace ContactsManager.UI.Controllers
                 return View(register);
             }
         }
-
+        [Authorize("NotAuth")]
         public IActionResult Login()
         {
             return View();
         }
-
+        [Authorize("NotAuth")]
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO login, string? ReturnUrl)
         {

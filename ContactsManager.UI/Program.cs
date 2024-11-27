@@ -24,6 +24,9 @@ else
     app.UseExceptionHandler("/Error");
     app.UseExceptionHandlingMiddleware();
 }
+app.UseHsts();
+app.UseHttpsRedirection();
+app.UseSerilogRequestLogging();
 app.UseHttpLogging();
 app.UseStaticFiles();
 app.UseRouting();
