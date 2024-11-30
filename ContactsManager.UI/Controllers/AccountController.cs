@@ -89,7 +89,7 @@ namespace ContactsManager.UI.Controllers
             {
                 if (response != null && response.ErrorMessage != null)
                 {
-                    ModelState.AddModelError("Login", response.ErrorMessage);
+                    ModelState.AddModelError("Login", response.ErrorMessage); 
                 }
                 return View(login);
             }
