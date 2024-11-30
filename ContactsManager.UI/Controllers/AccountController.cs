@@ -95,6 +95,7 @@ namespace ContactsManager.UI.Controllers
             }
         }
 
+        [HttpGet("Logout")]
         public async Task<IActionResult> Logout()
         {
             await _logoutService.LogoutAsync();
